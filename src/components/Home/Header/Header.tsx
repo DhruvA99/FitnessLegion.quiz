@@ -7,11 +7,11 @@ const Header = (): JSX.Element => {
       <div className="relative  overflow-hidden py-24 ">
         <div className="relative  max-w-full flex flex-col md:flex-row ">
           <div className="container p-6 self-center lg:max-w-screen-xl">
-            <span className="text-3xl   font-semibold block sm:my-5">
+            <span className="text-3xl text-primary  font-semibold block sm:my-5">
               <span className="text-green-600 font-semibold">Fitness</span>
               Legion Quiz
             </span>
-            <span className="text-lg lg:text-2xl font-medium py-4 block text-gray-700 sm:mb">
+            <span className="text-lg lg:text-2xl font-medium py-4 block text-secondary sm:mb">
               Bored? Want to have fun? Take a Quiz and Enjoy learning with Fun
             </span>
             <div>
