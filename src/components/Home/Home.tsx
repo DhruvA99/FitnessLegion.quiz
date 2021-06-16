@@ -17,7 +17,7 @@ const Home = (): JSX.Element => {
       >
         <div
           className={`rounded-full p-2 absolute top-0.5  transition-all duration-500 transform  ${
-            mode === "light" ? "bg-main left-1" : " bg-green-600 right-1"
+            !theme ? "bg-main left-1" : " bg-green-600 right-1"
           }`}
         ></div>
       </div>
