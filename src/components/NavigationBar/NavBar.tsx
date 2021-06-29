@@ -33,13 +33,13 @@ const Navbar = (): JSX.Element => {
               <ul className="flex flex-col lg:flex-row list-none ml-auto">
                 <li className="nav-item">
                   <NavLink
-                    className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75"
+                    className="px-3 py-2 flex items-center align-middle text-xs uppercase font-bold leading-snug text-white hover:opacity-75"
                     to="/login"
                   >
                     Login
                   </NavLink>
                 </li>
-                <li className="nav-item">
+                <li className="nav-item ">
                   <NavLink
                     className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75"
                     to="/signup"
