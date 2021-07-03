@@ -11,6 +11,27 @@ const authReducer = (
         ...state,
         status: "loading",
       };
+    case actionTypes.AUTH_LOGOUT:
+      return {
+        ...state,
+        status: "normal",
+        uniqueAuthId: null,
+        userId: null,
+      };
+    case actionTypes.AUTH_SUCCESS:
+      return {
+        ...state,
+        status: "authSuccess",
+        uniqueAuthId: action.uniqueAuthId,
+        userId: action.userId,
+        error: null,
+      };
+    case actionTypes.AUTH_FAILED:
+      return {
+        ...state,
+        status: "authFailed",
+        error: action.error,
+      };
     default:
       return state;
   }

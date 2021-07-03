@@ -6,6 +6,7 @@ import reportWebVitals from "./reportWebVitals";
 import { ThemeProvider } from "./Context/theme/theme-context";
 import { BrowserRouter } from "react-router-dom";
 import axios from "axios";
+import { AuthProvider } from "./Context/Auth/auth-context";
 
 axios.defaults.baseURL = "http://localhost:3005/api";
 
@@ -13,7 +14,9 @@ ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
       <ThemeProvider>
-        <App />
+        <AuthProvider>
+          <App />
+        </AuthProvider>
       </ThemeProvider>
     </BrowserRouter>
   </React.StrictMode>,

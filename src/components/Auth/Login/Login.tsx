@@ -1,14 +1,51 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../../../Context/Auth/auth-context";
+import { logInUser } from "../../../Context/Auth/authActions";
 import Navbar from "../../NavigationBar/NavBar";
+var emailRegex = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
 
 const Login = (): JSX.Element => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [error, setError] = useState<{ email: string; password: string }>({
-    email: "false",
-    password: "false",
+    email: "",
+    password: "",
   });
+  const [valid, setValid] = useState<boolean>(false);
+  const { authState, authDispatch } = useAuth();
+  let navigate = useNavigate();
+  useEffect(() => {
+    if (authState.status === "authSuccess") navigate("/");
+  }, [authState.status]);
+
+  const LoginSubmitHandler = (e: React.MouseEvent<HTMLElement>) => {
+    e.preventDefault();
+    let FormValid = true;
+    if (password.length === 0 || password.length < 8) {
+      setError((error) => {
+        return {
+          ...error,
+          password: "Password should not be empty or less than 8 characters",
+        };
+      });
+      FormValid = false;
+    }
+    if (!emailRegex.test(email)) {
+      setError((error) => {
+        return {
+          ...error,
+          email: "Enter a valid email format",
+        };
+      });
+      FormValid = false;
+    }
+    FormValid ? setValid(true) : setValid(false);
+    if (FormValid) {
+      logInUser(authDispatch, email, password);
+    }
+  };
+
   return (
     <div className="">
       <Navbar />
@@ -33,7 +70,7 @@ const Login = (): JSX.Element => {
                   setEmail(e.target.value)
                 }
               />
-              <span className="">{error.email}</span>
+              <span className="text-red-700">{error.email}</span>
             </div>
             <div className="flex flex-col my-3 text-sm">
               <input
@@ -46,11 +83,24 @@ const Login = (): JSX.Element => {
                   setPassword(e.target.value)
                 }
               />
+              <span className="text-red-700">{error.password}</span>
             </div>
             <div className="flex flex-col my-3 mx-auto w-11/12">
-              <button className="bg-main font-medium focus:outline-none focus:ring-2 focus:ring-blue-200 hover:bg-blue-600 transition duration-500  text-white px-2 py-3 rounded-lg w-full">
-                Login &#8594;
+              <button
+                className="bg-main font-medium focus:outline-none focus:ring-2 focus:ring-blue-200 hover:bg-blue-600 transition duration-500  text-white px-2 py-3 rounded-lg w-full"
+                onClick={(e: React.MouseEvent<HTMLElement>) =>
+                  LoginSubmitHandler(e)
+                }
+              >
+                {authState.status === "loading" ? (
+                  "Loading ..."
+                ) : (
+                  <span>Login &#8594;</span>
+                )}
               </button>
+              <span className="font-bold text-red-600 tracking-wide">
+                {authState.error}
+              </span>
             </div>
           </form>
         </div>

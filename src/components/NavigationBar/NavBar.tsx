@@ -1,9 +1,15 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import { useAuth } from "../../Context/Auth/auth-context";
+import { logoutUser } from "../../Context/Auth/authActions";
 import { useTheme } from "../../Context/theme/theme-context";
 
 const Navbar = (): JSX.Element => {
   const { theme, setThemeFunction } = useTheme();
+  const {
+    authState: { uniqueAuthId },
+    authDispatch,
+  } = useAuth();
 
   return (
     <div className="flex flex-wrap py-2 bg-main ">
@@ -31,22 +37,39 @@ const Navbar = (): JSX.Element => {
               id="example-navbar-info"
             >
               <ul className="flex flex-col lg:flex-row list-none ml-auto">
-                <li className="nav-item">
-                  <NavLink
-                    className="px-3 py-2 flex items-center align-middle text-xs uppercase font-bold leading-snug text-white hover:opacity-75"
-                    to="/login"
-                  >
-                    Login
-                  </NavLink>
-                </li>
-                <li className="nav-item ">
-                  <NavLink
-                    className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75"
-                    to="/signup"
-                  >
-                    Signup
-                  </NavLink>
-                </li>
+                {uniqueAuthId === null ? (
+                  <>
+                    <li className="nav-item">
+                      <NavLink
+                        className="px-3 py-2 flex items-center align-middle text-xs uppercase font-bold leading-snug text-white hover:opacity-75"
+                        to="/login"
+                      >
+                        Login
+                      </NavLink>
+                    </li>
+                    <li className="nav-item ">
+                      <NavLink
+                        className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75"
+                        to="/signup"
+                      >
+                        Signup
+                      </NavLink>
+                    </li>
+                  </>
+                ) : (
+                  <>
+                    <li className="nav-item ">
+                      <span
+                        className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75"
+                        onClick={() => {
+                          logoutUser(authDispatch);
+                        }}
+                      >
+                        Logout
+                      </span>
+                    </li>
+                  </>
+                )}
                 <li className="nav-item">
                   <div
                     onClick={() => {
