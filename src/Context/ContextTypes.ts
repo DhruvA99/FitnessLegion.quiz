@@ -1,3 +1,6 @@
+import { QuizType } from "../assets/quiz-types/quiz-types";
+
+//Auth Context
 export type authStateType = {
   status: string;
   uniqueAuthId: string | null;
@@ -17,3 +20,15 @@ export type authActionsType =
       error: string | null;
     }
   | { type: "AUTH_LOGOUT" };
+
+//Quiz Context
+export type quizStateType = {
+  status: string;
+  quizData: QuizType | null;
+  error: string | null;
+};
+
+export type quizActionType =
+  | { type: "QUIZ_LOADING" }
+  | { type: "QUIZ_SUCCESS"; quizData: QuizType }
+  | { type: "QUIZ_FAILED"; error: string | null };

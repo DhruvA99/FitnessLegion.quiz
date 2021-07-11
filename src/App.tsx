@@ -4,6 +4,7 @@ import "./App.css";
 import Home from "./components/Home/Home";
 import QuizList from "./components/QuizList/QuizList";
 import Login from "./components/Auth/Login/Login";
+import PlayQuiz from "./components/PlayQuiz/PlayQuiz";
 import Signup from "./components/Auth/Signup/Signup";
 
 function App() {
@@ -14,6 +15,7 @@ function App() {
         <Route path="/category/list" element={<QuizList />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
+        <Route path="/play" element={<PlayQuiz />} />
       </Routes>
     </div>
   );
