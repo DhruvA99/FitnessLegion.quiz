@@ -5,7 +5,7 @@ import { authActionsType, quizActionType } from "../ContextTypes";
 
 export const addQuizData = (
   dispatch: Dispatch<quizActionType>,
-  quizData: QuizType | null
+  quizData: QuizType
 ) => {
   dispatch({ type: actionTypes.QUIZ_LOADING });
   if (quizData !== null) {
