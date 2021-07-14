@@ -27,7 +27,9 @@ module.exports = {
       },
     },
     variants: {
-      extend: {},
+      extend: {
+        opacity: ({ after }) => after(["disabled"]),
+      },
     },
     plugins: [],
   },
