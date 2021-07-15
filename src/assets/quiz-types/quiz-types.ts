@@ -3,12 +3,14 @@ export type themeContextType = {
 };
 
 export type optionType = {
+  _id: string;
   text: string;
   isRight: boolean;
-  isSelected: false;
+  isSelected: boolean;
 };
 
 export type QuestionType = {
+  _id: string;
   question: string;
   isAttempted: boolean;
   points: number;

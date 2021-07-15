@@ -7,6 +7,7 @@ import {
 } from "../../../assets/quiz-types/quiz-types";
 
 const PlayQuizBox = (quesData: {
+  _id: string | undefined;
   question: string | null | undefined;
   options: optionType[] | null | undefined;
   isAttempted: boolean | undefined | null;
@@ -18,13 +19,21 @@ const PlayQuizBox = (quesData: {
       <span className="text-xl pb-4"> {quesData.question}</span>
       <div className="flex flex-row flex-wrap">
         {quesData?.options?.map(
-          (option: { text: any; isRight: any; isSelected: any }) => {
+          (option: {
+            _id: string;
+            text: any;
+            isRight: any;
+            isSelected: any;
+          }) => {
             let optionData = {
+              _id: option._id,
               text: option.text,
               isRight: option.isRight,
               isSelected: option.isSelected,
             };
-            return <PlayQuizOptionsCard {...optionData} />;
+            let quesId = quesData._id !== undefined ? quesData._id : "string";
+
+            return <PlayQuizOptionsCard {...optionData} quesId={quesId} />;
           }
         )}
       </div>

@@ -3,6 +3,7 @@ export const AUTH_SUCCESS = "AUTH_SUCCESS";
 export const AUTH_FAILED = "AUTH_FAILED";
 export const AUTH_LOGOUT = "AUTH_LOGOUT";
 
-export const QUIZ_LOADING = "QUIZ_LOADING";
-export const QUIZ_SUCCESS = "QUIZ_SUCCESS";
-export const QUIZ_FAILED = "QUIZ_FAILED";
+export const QUIZ_ADD_LOADING = "QUIZ_ADD_LOADING";
+export const QUIZ_ADD_SUCCESS = "QUIZ_ADD_SUCCESS";
+export const QUIZ_ADD_FAILED = "QUIZ_ADD_FAILED";
+export const SELECT_OPTION = "SELECT_OPTION";

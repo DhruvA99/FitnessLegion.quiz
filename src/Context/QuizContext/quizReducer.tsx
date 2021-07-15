@@ -7,23 +7,29 @@ const quizReducer = (
   action: quizActionType
 ): quizStateType => {
   switch (action.type) {
-    case actionTypes.QUIZ_LOADING:
+    case actionTypes.QUIZ_ADD_LOADING:
       return {
         ...state,
         status: "loading",
         error: null,
       };
-    case actionTypes.QUIZ_SUCCESS:
+    case actionTypes.QUIZ_ADD_SUCCESS:
       return {
         ...state,
         status: "quizSuccess",
         quizData: action.quizData,
       };
-    case actionTypes.QUIZ_FAILED:
+    case actionTypes.QUIZ_ADD_FAILED:
       return {
         ...state,
         status: "quizFailed",
         error: action.error,
+      };
+    case actionTypes.SELECT_OPTION:
+      return {
+        ...state,
+        status: "quizSuccess",
+        quizData: action.quizData,
       };
     default:
       return state;

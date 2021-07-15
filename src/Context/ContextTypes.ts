@@ -29,6 +29,7 @@ export type quizStateType = {
 };
 
 export type quizActionType =
-  | { type: "QUIZ_LOADING" }
-  | { type: "QUIZ_SUCCESS"; quizData: QuizType }
-  | { type: "QUIZ_FAILED"; error: string | null };
+  | { type: "QUIZ_ADD_LOADING" }
+  | { type: "QUIZ_ADD_SUCCESS"; quizData: QuizType }
+  | { type: "QUIZ_ADD_FAILED"; error: string | null }
+  | { type: "SELECT_OPTION"; quizData: QuizType };
