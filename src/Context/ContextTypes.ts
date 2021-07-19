@@ -25,6 +25,7 @@ export type authActionsType =
 export type quizStateType = {
   status: string;
   quizData: QuizType | null;
+  totalScore: number;
   error: string | null;
 };
 

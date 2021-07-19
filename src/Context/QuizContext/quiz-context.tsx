@@ -10,6 +10,7 @@ export const quizContext = createContext<{
   quizState: {
     status: "loading",
     quizData: null,
+    totalScore: 0,
     error: null,
   },
   quizDispatch: () => {},
@@ -23,6 +24,7 @@ export const QuizProvider = ({
   const initialState: quizStateType = {
     status: "loading",
     quizData: null,
+    totalScore: 0,
     error: null,
   };
   const [quizState, quizDispatch] = useReducer(quizReducer, initialState);

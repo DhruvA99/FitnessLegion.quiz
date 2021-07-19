@@ -42,7 +42,10 @@ export const selectOptionAction = (
               if (option.isRight) {
                 isCorrect = true;
               }
-              points = isCorrect ? ques.points : ques.negativePoints;
+              if (!option.isSelected) {
+                points = isCorrect ? ques.points : ques.negativePoints;
+              }
+
               return {
                 ...option,
                 isSelected: true,
@@ -68,3 +71,5 @@ export const selectOptionAction = (
 
   dispatch({ type: actionTypes.SELECT_OPTION, quizData: updatedQuizData });
 };
+
+export const finishQuiz = (dispatch: Dispatch<quizActionType>) => {};

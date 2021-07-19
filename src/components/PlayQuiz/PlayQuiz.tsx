@@ -2,13 +2,16 @@ import React, { useState } from "react";
 import PlayQuizBox from "./PlayQuizBox/PlayQuizBox";
 import classes from "./PlayQuiz.module.css";
 import { useQuiz } from "../../Context/QuizContext/quiz-context";
+import { useNavigate } from "react-router-dom";
+import Navbar from "../NavigationBar/NavBar";
 
 const PlayQuiz = (): JSX.Element => {
   const [currentIndex, setCurrentIndex] = useState<number>(0);
   const [score, setScore] = useState<number>(0);
+  const navigate = useNavigate();
 
   const {
-    quizState: { quizData, status: quizStatus },
+    quizState: { quizData, status: quizStatus, totalScore },
   } = useQuiz();
 
   const changeQuestion = (action: string) => {
@@ -36,11 +39,16 @@ const PlayQuiz = (): JSX.Element => {
   let page = <></>;
   if (quizData) {
     page = (
-      <div className="p-3 bg-primary h-screen">
+      <div className="bg-primary h-screen">
+        <Navbar />
         <div className="p-6 flex flex-col">
           <div className="w-full flex flex-col justify-center">
-            <span className="w-full text-3xl">{quizData?.name}</span>
-            <span className="w-full mt-4 text-lg">Score:{quizData?.score}</span>
+            <span className="w-full text-3xl text-primary">
+              {quizData?.name}
+            </span>
+            {/* <span className="w-full mt-4 text-lg text-primary">
+              Score:{totalScore}
+            </span> */}
           </div>
           {quizStatus === "quizSuccess" && (
             <div className="p-1 ">
@@ -69,6 +77,9 @@ const PlayQuiz = (): JSX.Element => {
             </button>
             <button
               className={`w-2/5 mx-1 mt-16 px-3 py-2 text-white rounded-md bg-green-600 ${classes.actionButton}`}
+              onClick={() => {
+                navigate("/result");
+              }}
             >
               Finish
             </button>
