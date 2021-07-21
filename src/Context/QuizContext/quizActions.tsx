@@ -1,3 +1,4 @@
+import axios from "axios";
 import { Dispatch } from "react";
 import { QuizType } from "../../assets/quiz-types/quiz-types";
 import * as actionTypes from "../ActionTypes";
@@ -72,4 +73,29 @@ export const selectOptionAction = (
   dispatch({ type: actionTypes.SELECT_OPTION, quizData: updatedQuizData });
 };
 
-export const finishQuiz = (dispatch: Dispatch<quizActionType>) => {};
+export const finishQuiz = async (
+  dispatch: Dispatch<quizActionType>,
+  quizId: string,
+  score: number
+) => {
+  try {
+    const data = {
+      score: score,
+    };
+    const uniqueAuthId = localStorage.getItem("uniqueAuthId");
+    const userId = localStorage.getItem("userId");
+    const response = await axios.post(`/quiz/result/${quizId}`, data, {
+      headers: {
+        Authorization: `Basic ${uniqueAuthId}`,
+        userId: userId,
+      },
+    });
+    if (response.data.success) {
+      console.log(response.data);
+    } else {
+      console.log(response.data.message);
+    }
+  } catch (error) {
+    console.log("catch error ", error);
+  }
+};

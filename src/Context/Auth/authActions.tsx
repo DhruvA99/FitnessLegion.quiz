@@ -21,6 +21,7 @@ export const logInUser = async (
         uniqueAuthId: response.data.authToken,
         userId: response.data.userId,
       });
+      console.log("uniqueAuthId", response.data.authToken);
       localStorage.setItem("uniqueAuthId", response.data.authToken);
       localStorage.setItem("userId", response.data.userId);
     } else {

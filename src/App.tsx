@@ -7,6 +7,7 @@ import Login from "./components/Auth/Login/Login";
 import PlayQuiz from "./components/PlayQuiz/PlayQuiz";
 import ResultQuiz from "./components/ResultQuiz/ResultQuiz";
 import Signup from "./components/Auth/Signup/Signup";
+import ProfilePage from "./components/ProfilePage/ProfilePage";
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Route path="/signup" element={<Signup />} />
         <Route path="/play" element={<PlayQuiz />} />
         <Route path="/result" element={<ResultQuiz />} />
+        <Route path="/profile" element={<ProfilePage />} />
       </Routes>
     </div>
   );

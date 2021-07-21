@@ -4,6 +4,7 @@ import classes from "./PlayQuiz.module.css";
 import { useQuiz } from "../../Context/QuizContext/quiz-context";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../NavigationBar/NavBar";
+import { finishQuiz } from "../../Context/QuizContext/quizActions";
 
 const PlayQuiz = (): JSX.Element => {
   const [currentIndex, setCurrentIndex] = useState<number>(0);
@@ -12,6 +13,7 @@ const PlayQuiz = (): JSX.Element => {
 
   const {
     quizState: { quizData, status: quizStatus, totalScore },
+    quizDispatch,
   } = useQuiz();
 
   const changeQuestion = (action: string) => {
@@ -78,6 +80,7 @@ const PlayQuiz = (): JSX.Element => {
             <button
               className={`w-2/5 mx-1 mt-16 px-3 py-2 text-white rounded-md bg-green-600 ${classes.actionButton}`}
               onClick={() => {
+                finishQuiz(quizDispatch, quizData._id, quizData.score);
                 navigate("/result");
               }}
             >
