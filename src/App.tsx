@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Route, Routes } from "react-router";
 import "./App.css";
 import Home from "./components/Home/Home";
@@ -8,8 +8,15 @@ import PlayQuiz from "./components/PlayQuiz/PlayQuiz";
 import ResultQuiz from "./components/ResultQuiz/ResultQuiz";
 import Signup from "./components/Auth/Signup/Signup";
 import ProfilePage from "./components/ProfilePage/ProfilePage";
+import { useAuth } from "./Context/Auth/auth-context";
+import { checkAuthStatus } from "./Context/Auth/authActions";
 
 function App() {
+  const { authDispatch } = useAuth();
+  useEffect(() => {
+    checkAuthStatus(authDispatch);
+  }, []);
+
   return (
     <div className="App">
       <Routes>

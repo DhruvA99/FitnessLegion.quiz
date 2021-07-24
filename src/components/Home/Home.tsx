@@ -9,7 +9,10 @@ const Home = (): JSX.Element => {
     <div className="bg-primary">
       <Navbar />
       <Header />
-      <Category />
+      <div id="category">
+        {" "}
+        <Category />
+      </div>
     </div>
   );
 };

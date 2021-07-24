@@ -43,3 +43,17 @@ export const logoutUser = (dispatch: Dispatch<authActionsType>) => {
   localStorage.removeItem("uniqueAuthId");
   localStorage.removeItem("userId");
 };
+
+export const checkAuthStatus = (dispatch: Dispatch<authActionsType>) => {
+  const uniqueAuthId = localStorage.getItem("uniqueAuthId");
+  const userId = localStorage.getItem("userId");
+  if (uniqueAuthId) {
+    dispatch({
+      type: actionTypes.AUTH_SUCCESS,
+      uniqueAuthId,
+      userId,
+    });
+  } else {
+    logoutUser(dispatch);
+  }
+};

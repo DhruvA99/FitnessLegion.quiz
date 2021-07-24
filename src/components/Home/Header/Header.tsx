@@ -15,9 +15,12 @@ const Header = (): JSX.Element => {
               Bored? Want to have fun? Take a Quiz and Enjoy learning with Fun
             </span>
             <div>
-              <button className="py-3 focus:outline-none focus:ring-3 focus:ring-blue-400 focus:ring-opacity-70 cursor-pointer  px-5 text-sm lg:text-base lg:mt-8 rounded-md shadow-md bg-custom-blue-700   text-white inline-block uppercase tracking-wide font-semibold hover:bg-blue-600 transition duration-200">
-                Take a Look{" "}
-              </button>
+              <a
+                className="py-3 focus:outline-none focus:ring-3 focus:ring-blue-400 focus:ring-opacity-70 cursor-pointer  px-5 text-sm lg:text-base lg:mt-8 rounded-md shadow-md bg-custom-blue-700   text-white inline-block uppercase tracking-wide font-semibold hover:bg-blue-600 transition duration-200"
+                href="#category"
+              >
+                Take a Look
+              </a>
             </div>
           </div>
           <div className="w-auto px-auto mx-auto">
@@ -28,6 +31,7 @@ const Header = (): JSX.Element => {
             />
           </div>
         </div>
+        <div className="pt-32"></div>
       </div>
     </>
   );
