@@ -16,7 +16,7 @@ const PlayQuizBox = (quesData: {
 }): JSX.Element => {
   return (
     <div className="p-1 flex flex-col pt-32">
-      <span className="text-xl pb-4"> {quesData.question}</span>
+      <span className="text-primary text-xl pb-4"> {quesData.question}</span>
       <div className="flex flex-row flex-wrap">
         {quesData?.options?.map(
           (option: {

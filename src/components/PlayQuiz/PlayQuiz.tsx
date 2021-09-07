@@ -41,9 +41,9 @@ const PlayQuiz = (): JSX.Element => {
   let page = <></>;
   if (quizData) {
     page = (
-      <div className="bg-primary h-screen">
+      <div className="bg-primary min-h-screen">
         <Navbar />
-        <div className="p-6 flex flex-col">
+        <div className="p-6 flex flex-col lg:w-4/5 mx-auto">
           <div className="w-full flex flex-col justify-center">
             <span className="w-full text-3xl text-primary">
               {quizData?.name}
