@@ -13,6 +13,7 @@ const ResultQuiz = (): JSX.Element => {
       <Navbar />
       <div className="flex flex-col">
         <span className="text-primary text-3xl p-4">Your Result</span>
+        <span>Your Score: {quizData ? quizData.score : "score"}</span>
         <div className="flex flex-col">
           {quizData &&
             quizData.questions.map((ques) => {
