@@ -9,8 +9,8 @@ import axios from "axios";
 import { AuthProvider } from "./Context/Auth/auth-context";
 import { QuizProvider } from "./Context/QuizContext/quiz-context";
 
-// axios.defaults.baseURL = "http://localhost:3005/api";
-axios.defaults.baseURL = "https://fitnesslegionquiz-backend.herokuapp.com/api";
+axios.defaults.baseURL = "http://localhost:3005/api";
+// axios.defaults.baseURL = "https://fitnesslegionquiz-backend.herokuapp.com/api";
 
 ReactDOM.render(
   <React.StrictMode>

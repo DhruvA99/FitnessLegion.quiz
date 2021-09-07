@@ -19,7 +19,10 @@ const Login = (): JSX.Element => {
     if (authState.status === "authSuccess") navigate("/");
   }, [authState.status]);
 
-  const LoginSubmitHandler = (e: React.MouseEvent<HTMLElement>) => {
+  const LoginSubmitHandler = (
+    e: React.MouseEvent<HTMLElement>,
+    type: String
+  ) => {
     e.preventDefault();
     let FormValid = true;
     if (password.length === 0 || password.length < 8) {
@@ -41,8 +44,10 @@ const Login = (): JSX.Element => {
       FormValid = false;
     }
     FormValid ? setValid(true) : setValid(false);
-    if (FormValid) {
+    if (FormValid && type === "normal") {
       logInUser(authDispatch, email, password);
+    } else {
+      logInUser(authDispatch, "admin@da.com", "asdfghjkl");
     }
   };
 
@@ -89,13 +94,26 @@ const Login = (): JSX.Element => {
               <button
                 className="bg-main font-medium focus:outline-none focus:ring-2 focus:ring-blue-200 hover:bg-blue-600 transition duration-500  text-white px-2 py-3 rounded-lg w-full"
                 onClick={(e: React.MouseEvent<HTMLElement>) =>
-                  LoginSubmitHandler(e)
+                  LoginSubmitHandler(e, "normal")
                 }
               >
                 {authState.status === "loading" ? (
                   "Loading ..."
                 ) : (
                   <span>Login &#8594;</span>
+                )}
+              </button>
+              <span className="text-lg py-2">OR</span>
+              <button
+                className="bg-main font-medium focus:outline-none focus:ring-2 focus:ring-blue-200 hover:bg-blue-600 transition duration-500  text-white px-2 py-3 rounded-lg w-full"
+                onClick={(e: React.MouseEvent<HTMLElement>) =>
+                  LoginSubmitHandler(e, "guest")
+                }
+              >
+                {authState.status === "loading" ? (
+                  "Loading ..."
+                ) : (
+                  <span>Login as Guest &#8594;</span>
                 )}
               </button>
               <span className="font-bold text-red-600 tracking-wide">

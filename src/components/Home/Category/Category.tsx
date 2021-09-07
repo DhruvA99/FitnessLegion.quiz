@@ -1,6 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import CategoryCard from "./CategoryCard/CategoryCard";
+import Loader from "../../Loader/Loader";
 
 const Category = (): JSX.Element => {
   const [category, setCategory] = useState([]);
@@ -22,12 +23,14 @@ const Category = (): JSX.Element => {
             Categories
           </span>
           <div className="p-4 flex flex-row flex-wrap justify-center w-full">
-            {category.map((categoryData) => {
-              // const categoryData = {
-              //   ...category,
-              // };
-              return <CategoryCard {...categoryData} />;
-            })}
+            {category.length !== 0 &&
+              category.map((categoryData) => {
+                // const categoryData = {
+                //   ...category,
+                // };
+                return <CategoryCard {...categoryData} />;
+              })}
+            {category.length === 0 && <Loader />}
           </div>
         </div>
       </div>
